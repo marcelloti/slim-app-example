@@ -1,0 +1,21 @@
+{
+  "name": "slimexample/core",
+  "description": "Core of slim app example",
+  "keywords": [
+    "microframework",
+    "rest",
+    "router",
+    "psr7"
+  ],
+  "homepage": "https://github.com/marcelloti/slim-app-example",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcello Costa",
+      "email": "marcello88costa@yahoo.com.br"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  }
+}

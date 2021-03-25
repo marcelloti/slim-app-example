@@ -1,0 +1,126 @@
+FROM debian:buster-slim
+MAINTAINER Marcello Costa <contact@insiderframework.com>
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV php_conf /etc/php/7.3/fpm/php.ini
+ENV fpm_conf /etc/php/7.3/fpm/pool.d/www.conf
+
+# **********************************************************************************************************
+###### Updating mirrors ######
+#RUN echo '128.101.80.133 security.debian.org' >> /etc/hosts
+RUN sed -i 's/deb.debian.org/ftp.br.debian.org/g' /etc/apt/sources.list 
+RUN apt-get update
+# **********************************************************************************************************
+
+# **********************************************************************************************************
+####### Time Zone for Sao_Paulo/Brazil #######
+# RUN cat '/usr/share/zoneinfo/America/Sao_Paulo' > /etc/localtime
+# **********************************************************************************************************
+
+# **********************************************************************************************************
+####### Installing apt-utils ############
+RUN apt-get install -y --no-install-recommends apt-utils
+# **********************************************************************************************************
+
+# System basics
+RUN buildDeps='build-essential gcc make autoconf libc-dev zlib1g-dev pkg-config' \
+    && set -x \
+    && apt-get update \
+    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget \
+    curl \
+    apt-transport-https lsb-release ca-certificates \
+    apt-utils \
+    vim \
+    zip \
+    unzip \
+    git \
+    libmemcached-dev \
+    libmemcached11
+
+# Nginx
+RUN echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list \
+    && curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - \
+    && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
+    && apt-get update && apt install nginx \
+    && mkdir -p /etc/nginx/sites-available && mkdir -p /etc/nginx/sites-enabled \
+    && mkdir -p /var/logs/nginx
+
+WORKDIR /var/www/code/
+
+# PHP packages
+RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
+            php7.3-fpm \
+            php7.3-cli \
+            php7.3-dev \
+            php7.3-common \
+            #php7.3-opcache \
+            php7.3-mbstring \
+            php7.3-curl \
+            php7.3-mysql \
+            php7.3-pgsql \
+            php7.3-zip \
+            php7.3-xml \
+            php-pear
+
+# PHP configuration
+RUN pecl -d php_suffix=7.3 install -o -f memcached \
+    && mkdir -p /run/php \
+
+    # Setting up daemon
+    && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
+
+    # Avoiding possible security breach with non-php files
+    && sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} \
+
+    # Environment, Get, Post, Cookie, and Server variables
+    && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
+
+    # Redirect stout/sterr to main log
+    && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
+
+    # Number of simultaneous children requests
+    && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
+
+    # Number of child processes created at startup
+    && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
+
+    # The minimum number of inactive server processes
+    && sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" ${fpm_conf} \
+
+     # The maxium number of inactive server processes
+    && sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" ${fpm_conf} \
+
+    # The number of requests for each child process that must be executed before respawning
+    && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
+
+    # Nginx user/group
+    && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
+
+    # Do not use environment variables in worker process
+    && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
+
+    # Setup memcached
+    && echo "extension=memcached.so" > /etc/php/7.3/mods-available/memcached.ini \  
+    && ln -sf /etc/php/7.3/mods-available/memcached.ini /etc/php/7.3/fpm/conf.d/20-memcached.ini \
+    && ln -sf /etc/php/7.3/mods-available/memcached.ini /etc/php/7.3/cli/conf.d/20-memcached.ini
+
+# Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    php -r "unlink('composer-setup.php');" && \
+    chmod +x /usr/local/bin/composer
+
+# Clean env
+RUN rm -rf /tmp/pear \
+    && apt-get purge -y --auto-remove $buildDeps \
+    && apt-get clean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+# Add Scripts
+ADD init.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+
+EXPOSE 80
+ENTRYPOINT /usr/local/bin/init.sh && /bin/bash
