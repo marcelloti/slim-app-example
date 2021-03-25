@@ -111,6 +111,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "unlink('composer-setup.php');" && \
     chmod +x /usr/local/bin/composer
 
+# PHPUnit
+RUN composer global require phpunit/phpunit
+RUN echo 'export PATH="~/.config/composer/vendor/bin:$PATH"' >> ~/.bashrc
+
 # Clean env
 RUN rm -rf /tmp/pear \
     && apt-get purge -y --auto-remove $buildDeps \

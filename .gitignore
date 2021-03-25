@@ -1,3 +1,5 @@
 tmp
 code/vendor
 code/Modules/Core/vendor
+
+code/\.phpunit\.result\.cache
