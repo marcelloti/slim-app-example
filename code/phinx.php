@@ -1,35 +1,37 @@
 <?php
 
+require_once __DIR__ . '/helpers/helpers.php';
+
 return
 [
     'paths' => [
-        'migrations' => __DIR__.'/db/migrations',
-        'seeds' => __DIR__.'/db/seeds'
+        'migrations' => path_modules('/db/migrations'),
+        'seeds' => path_modules('/db/seeds')
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',
         'default_environment' => 'development',
         'production' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'production_db',
+            'host' => '192.168.80.11',
+            'name' => 'exampleapp',
             'user' => 'root',
-            'pass' => '',
+            'pass' => 'root',
             'port' => '3306',
             'charset' => 'utf8',
         ],
         'development' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'development_db',
+            'host' => '192.168.80.11',
+            'name' => 'exampleapp',
             'user' => 'root',
-            'pass' => '',
+            'pass' => 'root',
             'port' => '3306',
             'charset' => 'utf8',
         ],
         'testing' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
+            'host' => '192.168.80.11',
             'name' => 'exampleapp',
             'user' => 'root',
             'pass' => 'root',
