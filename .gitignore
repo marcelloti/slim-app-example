@@ -3,3 +3,5 @@ code/vendor
 code/Modules/Core/vendor
 
 code/\.phpunit\.result\.cache
+
+docker/mysql_data/
