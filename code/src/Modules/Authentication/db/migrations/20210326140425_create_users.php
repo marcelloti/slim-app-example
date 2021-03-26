@@ -18,6 +18,20 @@ final class CreateUsers extends AbstractMigration
      */
     public function change(): void
     {
-
+        $table = $this->table('users', ['id' => false, 'primary_key' => 'id'])
+        ->addColumn('id', 'uuid', [
+            'default' => null,
+            'null' => false,
+        ])
+        ->addColumn('nome', 'string', ["limit" => 255])
+        ->addColumn('cpf', 'string', ["limit" => 11])
+        ->addColumn('email', 'string', ["limit" => 255])
+        ->addColumn('password', 'string', ["limit" => 255])
+        ->addColumn('created_at', 'datetime')
+        ->addColumn('updated_at', 'datetime')
+        ->addIndex(['id'], ['unique' => true])
+        ->addIndex(['cpf'], ['unique' => true])
+        ->addIndex(['email'], ['unique' => true])
+        ->create();
     }
 }
