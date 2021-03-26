@@ -26,7 +26,7 @@ final class CreateUsers extends AbstractMigration
         ->addColumn('nome', 'string', ["limit" => 255])
         ->addColumn('cpf', 'string', ["limit" => 11])
         ->addColumn('email', 'string', ["limit" => 255])
-        ->addColumn('password', 'string', ["limit" => 255])
+        ->addColumn('senha', 'string', ["limit" => 255])
         ->addColumn('created_at', 'datetime')
         ->addColumn('updated_at', 'datetime')
         ->addIndex(['id'], ['unique' => true])
