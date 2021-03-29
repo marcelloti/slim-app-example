@@ -27,7 +27,6 @@ $middleware($app);
 
 // Register routes
 $routes = require __DIR__ . '/../src/routes.php';
-$routes($app);
 
 $app->getContainer()->get('db');
 
