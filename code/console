@@ -13,6 +13,7 @@ $application->add(new \SlimExample\Modules\Migrations\Commands\MigrationCommand)
 $application->add(new \SlimExample\Modules\Migrations\Commands\SeedCommand);
 $application->add(new \SlimExample\Modules\Migrations\Commands\SeedCreateCommand);
 $application->add(new \SlimExample\Modules\Migrations\Commands\RollbackCommand);
-$application->add(new \SlimExample\Modules\Migrations\Commands\StatusCommand);
+$application->add(new \SlimExample\Modules\Migrations\Commands\RollbackCommand);
+$application->add(new \SlimExample\Modules\Migrations\Commands\MigrationCreateCommand);
 
 $application->run();
