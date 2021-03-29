@@ -9,14 +9,16 @@ class User extends Model {
     'nome',
     'cpf',
     'email',
-    'senha'
+    'senha',
   ];
 
   protected $hidden = [
     'senha'
   ];
 
+  /*
   protected function setSenhaAttribute($value){
     // TODO Adicionar regra para geração de hash de senha
   }
+  */
 }
