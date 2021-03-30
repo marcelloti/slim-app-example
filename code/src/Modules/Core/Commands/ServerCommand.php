@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ServerCommand extends Command {
   protected function configure(){
-    $this->setName('server')->setDescription('run a PHP Built-in Server');
+    $this->setName('server')->setDescription('Run a PHP Built-in Server');
   }
   protected function execute(InputInterface $input, OutputInterface $output){
     $output->write('Run server in http://localhost:8080');

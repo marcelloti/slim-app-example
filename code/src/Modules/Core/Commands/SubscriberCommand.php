@@ -10,7 +10,7 @@ class SubscriberCommand extends Command {
   protected function configure(){
     $this
     ->setName('subscriber')
-    ->setDescription('run a PHP subscriber')
+    ->setDescription('Run a PHP subscriber')
     ->addArgument('moduleAndSubscriber', InputArgument::REQUIRED, 'Module and subscriber name');
   }
 
