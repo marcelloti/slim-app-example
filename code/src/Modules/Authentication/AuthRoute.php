@@ -11,21 +11,17 @@ use SlimExample\Modules\Authentication\Controllers\AuthenticationController;
 
 class AuthRoute extends Route {
   public function create(): void {
+    /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     @OA\Response(
+     *      response="200",
+     *      description="Login route"
+     *     )
+     * )
+     */
     $this->app->post('/api/login', function(Request $request, Response $response, array $args): Response {
       return AuthenticationController::login($request, $response, $args);
-    });
-
-    $this->app->get('/api/users/list', function(Request $request, Response $response, array $args): Response {
-      $users = User::get();
-      return $response->withJson($users);
-
-      //return 'list users';
-    });
-
-    $this->app->post('/api/users/create', function(Request $request, Response $response, array $args): Response {
-      $data = $request->getParsedBody();
-      $user = User::create($data);
-      return $response->withJson($user);
     });
   }
 }

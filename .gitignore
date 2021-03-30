@@ -8,3 +8,4 @@ code/\.phpunit\.result\.cache
 docker/mysql_data/
 docker/rabbitmqdata
 .env
+openapi.json

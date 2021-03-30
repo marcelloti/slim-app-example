@@ -58,6 +58,19 @@ services:
       app_network:
         ipv4_address: 192.168.80.12
 
+  swagger-ui:
+    image: swaggerapi/swagger-ui:v3.45.1
+    container_name: "swagger-ui"
+    ports:
+      - "8082:8080"
+    volumes:
+      - ../code/openapi.json:/openapi.json
+    environment:
+      SWAGGER_JSON: /openapi.json
+    networks:
+      app_network:
+        ipv4_address: 192.168.80.13
+
 networks:
   app_network:
     driver: bridge
