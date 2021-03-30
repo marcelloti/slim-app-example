@@ -8,21 +8,25 @@ use SlimExample\Modules\Users\Models\User;
 
 class UsersController extends ControllerAbstract {
     public static function get(Request $request, Response $response, array $args): Response {
+        # TODO
         $users = User::get();
         return $response->withJson($users);
     }
 
     public static function post(Request $request, Response $response, array $args): Response {
+        # TODO
         $data = $request->getParsedBody();
         $user = User::create($data);
         return $response->withJson($user);
     }
 
     public static function put(Request $request, Response $response, array $args): Response {
+        # TODO
         return $response->withJson('Put Users');
     }
 
     public static function delete(Request $request, Response $response, array $args): Response {
+        # TODO
         return $response->withJson('Delete Users');
     }
 }
