@@ -1,6 +1,6 @@
 <?php
 
-namespace SlimExample\Modules\Authentication\Models;
+namespace SlimExample\Modules\Users\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
