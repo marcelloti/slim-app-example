@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional;
+namespace Tests;
 
 use Slim\App;
 use Slim\Http\Request;
@@ -53,23 +53,23 @@ class BaseTestCase extends TestCase
         $response = new Response();
 
         // Use the application settings
-        $settings = require __DIR__ . '/../../src/settings.php';
+        $settings = require __DIR__ . '/../src/settings.php';
 
         // Instantiate the application
         $app = new App($settings);
 
         // Set up dependencies
-        $dependencies = require __DIR__ . '/../../src/dependencies.php';
+        $dependencies = require __DIR__ . '/../src/dependencies.php';
         $dependencies($app);
 
         // Register middleware
         if ($this->withMiddleware) {
-            $middleware = require __DIR__ . '/../../src/middleware.php';
+            $middleware = require __DIR__ . '/../src/middleware.php';
             $middleware($app);
         }
 
         // Register routes
-        $routes = require __DIR__ . '/../../src/routes.php';
+        $routes = require __DIR__ . '/../src/routes.php';
 
         // Process the application
         $response = $app->process($request, $response);
