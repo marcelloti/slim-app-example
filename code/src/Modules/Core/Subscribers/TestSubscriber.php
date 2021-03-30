@@ -1,11 +1,11 @@
 <?php
-namespace SlimExample\Modules\Authentication\Services;
+namespace SlimExample\Modules\Core\Subscribers;
 
 use SlimExample\Lib\Queue\QueueLib;
-use SlimExample\Modules\Core\Service\IService;
+use SlimExample\Modules\Core\Subscribers\ISubscriber;
 use PhpAmqpLib\Message\AMQPMessage;
 
-class TestService implements IService {
+class TestSubscriber implements ISubscriber {
     public function execute(): void {
         ini_set('max_execution_time', 0);
 
