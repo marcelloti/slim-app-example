@@ -1,7 +1,9 @@
 tmp
 code/vendor
 code/Modules/Core/vendor
+code/src/.env
 
 code/\.phpunit\.result\.cache
 
 docker/mysql_data/
+docker/rabbitmqdata

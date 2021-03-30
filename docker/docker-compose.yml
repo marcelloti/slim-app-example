@@ -43,6 +43,21 @@ services:
     volumes:
       - ./mysql_data:/var/lib/mysql
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./rabbitmqdata:/var/lib/rabbitmq      
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbit
+      - RABBITMQ_DEFAULT_PASS=rabbit
+    networks:
+      app_network:
+        ipv4_address: 192.168.80.12
+
 networks:
   app_network:
     driver: bridge
