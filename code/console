@@ -9,6 +9,7 @@ $application = new Application;
 
 $application->add(new \SlimExample\Modules\Core\Commands\ServerCommand());
 $application->add(new \SlimExample\Modules\Core\Commands\SubscriberCommand);
+$application->add(new \SlimExample\Modules\Core\Commands\UpdateApiDocCommand);
 $application->add(new \SlimExample\Modules\Migrations\Commands\InitCommand);
 $application->add(new \SlimExample\Modules\Migrations\Commands\MigrationCommand);
 $application->add(new \SlimExample\Modules\Migrations\Commands\SeedCommand);
