@@ -16,7 +16,7 @@ final class CreateUsers extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change(): void
+    public function up(): void
     {
         $table = $this->table('users', ['id' => false, 'primary_key' => 'id'])
         ->addColumn('id', 'uuid', [
@@ -33,5 +33,10 @@ final class CreateUsers extends AbstractMigration
         ->addIndex(['cpf'], ['unique' => true])
         ->addIndex(['email'], ['unique' => true])
         ->create();
+    }
+
+    public function down(): void
+    {
+        $this->table('users')->drop()->save();
     }
 }

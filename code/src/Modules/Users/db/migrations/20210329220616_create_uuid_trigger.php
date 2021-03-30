@@ -16,7 +16,7 @@ final class CreateUUIDTrigger extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change(): void
+    public function up(): void
     {
         $this->execute('
         CREATE TRIGGER insert_uuid
@@ -25,5 +25,10 @@ final class CreateUUIDTrigger extends AbstractMigration
         BEGIN 
             SET NEW.id = UUID(); 
         END;');
+    }
+
+    public function down(): void
+    {
+        $this->execute('DROP TRIGGER insert_uuid');
     }
 }
