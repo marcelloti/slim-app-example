@@ -53,23 +53,23 @@ class BaseTestCase extends TestCase
         $response = new Response();
 
         // Use the application settings
-        $settings = require __DIR__ . '/../src/settings.php';
+        $frameworkSettings = require __DIR__ . '/../src/FrameworkSettings.php';
 
         // Instantiate the application
-        $app = new App($settings);
+        $app = new App($frameworkSettings);
 
         // Set up dependencies
-        $dependencies = require __DIR__ . '/../src/dependencies.php';
+        $dependencies = require __DIR__ . '/../src/Dependencies.php';
         $dependencies($app);
 
         // Register middleware
         if ($this->withMiddleware) {
-            $middleware = require __DIR__ . '/../src/middleware.php';
+            $middleware = require __DIR__ . '/../src/Middlewares.php';
             $middleware($app);
         }
 
         // Register routes
-        $routes = require __DIR__ . '/../src/routes.php';
+        $routes = require __DIR__ . '/../src/Modules/Core/Routing/RouteList.php';
 
         // Process the application
         $response = $app->process($request, $response);

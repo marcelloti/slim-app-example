@@ -1,7 +1,7 @@
 <?php
 namespace SlimExample\Modules\Core\Subscribers;
 
-use SlimExample\Lib\Queue\QueueLib;
+use SlimExample\Acl\Infra\Queue\QueueLib;
 use SlimExample\Modules\Core\Subscribers\ISubscriber;
 use PhpAmqpLib\Message\AMQPMessage;
 

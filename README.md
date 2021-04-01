@@ -16,8 +16,8 @@
 <p>Em seguida acesse o terminal do container "exampleapp" e execute os seguintes comandos:
 <code>
 <p>composer install</p>
-<p>php console migration:run</p>
-<p>php console migration:seed:run</p>
+<p>php console migration:run -e default</p>
+<p>php console migration:seed:run -e default</p>
 </code>
 <br/>
 <p>Este projeto contém subscribers que são os consumers para filas.</p>
