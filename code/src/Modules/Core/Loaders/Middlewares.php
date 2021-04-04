@@ -1,7 +1,8 @@
 <?php
 
 use Slim\App;
+use SlimExample\Modules\Core\Middlewares\CorsMiddleware;
 
 return function (App $app) {
-    // e.g: $app->add(new \Slim\Csrf\Guard);
+    $app->add(new CorsMiddleware);
 };
