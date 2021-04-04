@@ -6,8 +6,10 @@ class Util {
     public static function getCurrentEnv(){
         $env = 'default';
 
-        if ($_ENV['ENV'] !== NULL){
-            $env = $_ENV['ENV'];
+        if (isset($_ENV)){
+            if (isset($_ENV['ENV']) && $_ENV['ENV'] !== NULL){
+                $env = $_ENV['ENV'];
+            }
         }
 
         // Current Phinx / Cmd Env (from https://github.com/cakephp/phinx/issues/1137)
