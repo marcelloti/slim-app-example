@@ -30,6 +30,7 @@ class AuthMiddleware
         $tokenValue = $tokenExploded[1];
 
         $validToken = LoginService::validateAuthToken($tokenValue);
+
         if (!$validToken){
             return $response->withStatus(401);
         }

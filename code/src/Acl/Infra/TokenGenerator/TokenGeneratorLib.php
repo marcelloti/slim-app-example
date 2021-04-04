@@ -16,8 +16,8 @@ class TokenGeneratorLib {
     public static function validate(string $token, string $secret): bool {
         $generator = new TokenGeneratorLib::$generatorClass();
 
-        $token = $generator->validate($token, $secret);
+        $validation = $generator->validate($token, $secret);
 
-        return $token;
+        return $validation;
     }
 }

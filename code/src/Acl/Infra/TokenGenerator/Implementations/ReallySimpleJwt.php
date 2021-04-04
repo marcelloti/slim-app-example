@@ -1,7 +1,13 @@
 <?php
 namespace SlimExample\Acl\Infra\TokenGenerator\Implementations;
 
+use ReallySimpleJWT\Jwt;
+use ReallySimpleJWT\Parse;  
+use ReallySimpleJwt\Encoders\EncodeHS256;
 use ReallySimpleJWT\Token;
+use ReallySimpleJWT\Validate;
+use ReallySimpleJWT\Encode;
+
 use SlimExample\Acl\Infra\TokenGenerator\ITokenGenerator;
 
 class ReallySimpleJwt implements ITokenGenerator {
@@ -18,8 +24,15 @@ class ReallySimpleJwt implements ITokenGenerator {
 
     public function validate(string $token, string $secret): bool {
         try{
-            $validation = Token::validate($token, $secret);
-            return $validation;
+            $jwtObj = new Jwt($token, $secret);
+            $parse = new Parse($jwtObj, new Validate(), new Encode());
+
+            if ($parse->parse()->getExpiresIn() <= 0){
+                return false;
+            }
+            
+            return true;
+
         } catch (\Exception $err){
             return false;
         }

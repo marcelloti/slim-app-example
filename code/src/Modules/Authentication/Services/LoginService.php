@@ -89,10 +89,13 @@ class LoginService {
 
     public static function validateAuthToken(string $token): bool {
         $tokenData = LoginService::getAuthTokenDataInDatabaseByToken($token);
+
         if ($tokenData === null){
             return false;
         }
 
-        return TokenGeneratorLib::validate($tokenData['token'], $tokenData['secret']);
+        $validation = TokenGeneratorLib::validate($tokenData['token'], $tokenData['secret']);
+
+        return $validation;
     }
 }
