@@ -20,6 +20,15 @@ return
             'port' => $frameworkSettings['settings']['db']['port'],
             'charset' => $frameworkSettings['settings']['db']['charset'],
         ],
+        'testing' => [
+            'adapter' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_DRIVER', 'testing'),
+            'host' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_HOST', 'testing'),
+            'name' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_NAME', 'testing'),
+            'user' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_USERNAME', 'testing'),
+            'pass' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PASSWORD', 'testing'),
+            'port' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PORT', 'testing'),
+            'charset' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_CHARSET', 'testing'),
+        ],
     ],
     'version_order' => 'creation'
 ];

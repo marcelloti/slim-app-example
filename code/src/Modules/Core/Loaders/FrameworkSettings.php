@@ -1,4 +1,12 @@
 <?php
+
+$env = SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv();
+
+$databasename = SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_NAME', $env);
+if ($env === "testing") {
+    $databasename .= ".sqlite3";
+}
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -18,15 +26,15 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
         'db' => [
-            'driver' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_DRIVER'),
-            'host' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_HOST'),
-            'port' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PORT'),
-            'database' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_NAME'),
-            'username' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_USERNAME'),
-            'password' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PASSWORD'),
-            'charset' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_CHARSET'),
-            'collation' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_COLLATION'),
-            'prefix' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PREFIX'),
+            'driver' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_DRIVER', $env),
+            'host' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_HOST', $env),
+            'port' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PORT', $env),
+            'database' => $databasename,
+            'username' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_USERNAME', $env),
+            'password' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PASSWORD', $env),
+            'charset' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_CHARSET', $env),
+            'collation' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_COLLATION', $env),
+            'prefix' => SlimExample\Acl\Infra\DotEnv\DotEnvLib::get('DATABASE_PREFIX', $env),
         ]
     ],
 ];

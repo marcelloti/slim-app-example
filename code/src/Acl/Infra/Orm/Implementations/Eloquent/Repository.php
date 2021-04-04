@@ -7,33 +7,27 @@ use Illuminate\Database\Eloquent\Collection;
 use SlimExample\Acl\Infra\Orm\IRepository;
 
 class Repository implements IRepository {
-    private $model;
-
-    public function __construct($model){
-        $this->model = $model;
-    }
-
     public function findAll(): array {
-        return [];
+        return $this->model::get()->toArray();
     }
 
-    public function findBy(array $data): Array {
+    public function findBy(array $data): array {
         $tableName = $this->model->getTable();
-        $dataFetched = $this->model->where($data)->get()->toArray();
+        $dataFetched = $this->model->where($data)->get();
 
-        return $data;
-
+        return $dataFetched->toArray();
     }
 
-    public function insert(array $data): bool{
-        return false;
+    public function insert(array $data): void {
+        $this->model::insert($data);
     }
 
-    public function delete(array $data): bool{
-        return false;
+    public function delete(array $data): void {
+        $tableName = $this->model->getTable();
+        $this->model->where($data)->delete();
     }
 
-    public function update(){
-        
+    public function update(array $filter, array $newData): void {
+        $this->model::where($filter)->update($newData);
     }
 }

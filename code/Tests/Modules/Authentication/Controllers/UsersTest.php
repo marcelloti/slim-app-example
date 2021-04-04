@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Acl\Infra\Queue;
 
-use Tests\BaseTestCase;
+use Tests\RequestTestCase;
 use SlimExample\Acl\Infra\DotEnv\DotEnvLib;
 use Illuminate\Support\Facades\Http;
 
-class UsersTest extends BaseTestCase
+class UsersTest extends RequestTestCase
 {
     public function testLoginUser()
     {
@@ -20,14 +20,8 @@ class UsersTest extends BaseTestCase
             ]
         );
 
-
-        var_dump(1);
-        var_dump($res);
-        die();
-
         $authData = $res->getBody()->getContents();
 
-        var_dump(2);
         var_dump($authData);
         die();
 

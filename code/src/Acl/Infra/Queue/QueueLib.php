@@ -7,11 +7,10 @@ class QueueLib {
     public static function getQueueManager($managerName = null){
         $queueManager = null;
         if ($managerName === null) {
-            $managerClass = "SlimExample\\Acl\Infra\\Queue\\Implementations\\".DotEnvLib::get('QUEUE_ENGINE');
-            $queueManager = new $managerClass();
-            
+            $managerClass = "SlimExample\\Acl\\Infra\\Queue\\Implementations\\".DotEnvLib::get('QUEUE_ENGINE');
+            $queueManager = new $managerClass();            
         } else {
-            $managerClass = "SlimExample\\Acl\Infra\\Queue\\Implementations\\".$managerName;
+            $managerClass = "SlimExample\\Acl\\Infra\\Queue\\Implementations\\".$managerName;
             $queueManager = new $managerClass();
         }
 

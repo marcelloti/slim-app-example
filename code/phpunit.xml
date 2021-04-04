@@ -1,7 +1,10 @@
-<phpunit bootstrap="autoload.php">
+<phpunit bootstrap="Tests/BootstrapTests.php">
     <testsuites>
         <testsuite name="SlimSkeleton">
-            <directory>tests</directory>
+            <directory>Tests</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="ENV" value="testing" force="true" />
+    </php>
 </phpunit>

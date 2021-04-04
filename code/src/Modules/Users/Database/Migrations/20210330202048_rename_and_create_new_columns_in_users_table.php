@@ -16,7 +16,11 @@ final class RenameAndCreateNewColumnsInUsersTable extends AbstractMigration
     public function down(): void
     {
         $table = $this->table('users');
-        $this->execute('UPDATE users SET cpfcnpj=SUBSTRING(cpfcnpj, 1, 11)');
+
+        if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() !== 'testing'){
+            $this->execute('UPDATE users SET cpfcnpj=SUBSTRING(cpfcnpj, 1, 11)');
+        }
+        
         $table->removeColumn('lojista')->save();
         $table->renameColumn('cpfcnpj', 'cpf');
         $table->changeColumn('cpf', 'string', ['limit' => 11])->save();

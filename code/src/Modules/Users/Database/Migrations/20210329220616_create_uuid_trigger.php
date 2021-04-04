@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
+use SlimExample\Acl\Infra\DotEnv\DotEnvLib;
 
 final class CreateUUIDTrigger extends AbstractMigration
 {
@@ -18,6 +19,10 @@ final class CreateUUIDTrigger extends AbstractMigration
      */
     public function up(): void
     {
+        if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() === 'testing'){
+            return;
+        }
+
         $this->execute('
         CREATE TRIGGER insert_uuid
         BEFORE INSERT ON users
@@ -29,6 +34,10 @@ final class CreateUUIDTrigger extends AbstractMigration
 
     public function down(): void
     {
+        if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() === 'testing'){
+            return;
+        }
+
         $this->execute('DROP TRIGGER insert_uuid');
     }
 }

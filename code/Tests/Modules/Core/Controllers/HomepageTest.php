@@ -2,13 +2,13 @@
 
 namespace Tests\Functional;
 
-use Tests\BaseTestCase;
+use Tests\RequestTestCase;
 
-class HomepageTest extends BaseTestCase
+class HomepageTest extends RequestTestCase
 {
     public function testGetApiOnlineResponse()
     {
-        $response = $this->runApp('GET', '/');
+        $response = $this->request('GET', '/');
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertStringContainsString('API ONLINE', (string)$response->getBody());

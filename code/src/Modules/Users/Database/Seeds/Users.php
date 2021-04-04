@@ -56,8 +56,16 @@ class Users extends AbstractSeed
             ]
         ];
 
-        $posts = $this->table('users');
-        $posts->insert($data)
+        if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() === 'testing'){
+            $count = 1;
+            foreach($data as &$d){
+                $d['id']=$count;
+                $count++;
+            }
+        }
+
+        $rows = $this->table('users');
+        $rows->insert($data)
               ->saveData();
     }
 }

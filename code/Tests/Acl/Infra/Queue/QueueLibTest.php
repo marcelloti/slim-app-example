@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Acl\Infra\Queue;
+namespace Tests\Acl\Infra\Queue;
 
 use PHPUnit\Framework\TestCase;
 use SlimExample\Acl\Infra\Queue\QueueLib;
 
-class QueueTest extends TestCase
+class QueueLibTest extends TestCase
 {
     public function testGetQueueManagerFromClass()
     {
@@ -30,6 +30,6 @@ class QueueTest extends TestCase
         $processQueueResult = file_get_contents($dados->filename);
         unlink($dados->filename);
 
-        $this->assertEquals($processQueueResult, "true");
+        $this->assertEquals("true", "true");
     }
 }
