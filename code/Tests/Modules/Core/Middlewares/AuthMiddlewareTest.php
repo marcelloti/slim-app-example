@@ -35,7 +35,7 @@ class AuthMiddlewareTest extends RequestTestCase
 
     public function testUnauthorizedRoute()
     {
-        $httpcode = $this->makeRequestAndReturnHttpCode('api/users/list');
+        $httpcode = $this->makeRequestAndReturnHttpCode('api/users');
 
         $this->assertEquals(401, $httpcode);
     }
