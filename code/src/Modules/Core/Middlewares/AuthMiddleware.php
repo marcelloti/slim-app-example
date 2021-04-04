@@ -9,8 +9,10 @@ class AuthMiddleware
     {
         $rota = $request->getUri()->getPath();
 
-        preg_match('/(\/api\/(?!login))/', $rota, $protectedRoutes, PREG_OFFSET_CAPTURE);
-        if (count($protectedRoutes) === 0){
+        preg_match('/(\/api\/(?!login))/', $rota, $matches, PREG_OFFSET_CAPTURE);
+        $protectedRoute = count($matches) === 0 ? true : false;
+
+        if ($protectedRoute){
             $response = $next($request, $response, $next);
             return $response;
         }
