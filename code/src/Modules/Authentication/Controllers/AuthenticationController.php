@@ -9,6 +9,7 @@ use SlimExample\Modules\Authentication\Services\LoginService;
 class AuthenticationController extends ControllerAbstract {
     public static function login(Request $request, Response $response, array $args): Response {
         $data = $request->getParsedBody();
+
         if (!isset($data['email']) || !isset($data['senha'])){
             return $response->withStatus(400)
             ->withJson(['error' => 'Dados da requisição inválidos']);
@@ -17,7 +18,7 @@ class AuthenticationController extends ControllerAbstract {
         $token = LoginService::getNewAuthToken($data['email'], $data['senha']);
 
         return $response->withStatus(200)->withJson(
-            ['token' => $token]    
+            ['token' => $token]
         );
     }
 }
