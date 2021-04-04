@@ -18,7 +18,7 @@ class LoginService {
         return count($results) === 1 ? $results[0] : null;
     }
 
-    protected function getAuthTokenDataInDatabaseByToken(string $token): ?array {
+    public function getAuthTokenDataInDatabaseByToken(string $token): ?array {
         $tokenRepo = new AuthTokensRepository();
 
         $findData = [

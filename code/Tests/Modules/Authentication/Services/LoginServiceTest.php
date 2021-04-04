@@ -38,4 +38,17 @@ class LoginServiceTest extends TestCase
 
         $this->assertEquals(false, $tokenIsValid);
     }
+
+    public function testGetAuthTokenDataInDatabaseByToken(){
+        $email = "usuario1@exampleapp.com";
+        $senha = "123";
+        $token = LoginService::getNewAuthToken($email, $senha);
+
+        $tokenRetornado = LoginService::getAuthTokenDataInDatabaseByToken($token);
+
+        $this->assertNotNull( 
+            $tokenRetornado, 
+            "variable is null"
+        );
+    }
 }
