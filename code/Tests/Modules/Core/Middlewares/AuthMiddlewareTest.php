@@ -19,7 +19,6 @@ class AuthMiddlewareTest extends RequestTestCase
         }
 
         curl_setopt($ch, CURLOPT_HEADER, true);
-        //curl_setopt($ch, CURLOPT_NOBODY, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         $result = curl_exec($ch);
 
