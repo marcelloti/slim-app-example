@@ -14,8 +14,10 @@ class AuthenticationController extends ControllerAbstract {
             ->withJson(['error' => 'Dados da requisição inválidos']);
         }
 
+        $token = LoginService::getNewAuthToken($data['email'], $data['senha']);
+
         return $response->withStatus(200)->withJson(
-            LoginService::login($data['email'], $data['senha'])
+            ['token' => $token]    
         );
     }
 }

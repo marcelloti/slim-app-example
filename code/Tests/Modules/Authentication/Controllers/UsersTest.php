@@ -22,9 +22,6 @@ class UsersTest extends RequestTestCase
 
         $authData = $res->getBody()->getContents();
 
-        var_dump($authData);
-        die();
-
         $authDataParsed = json_decode($authData, true);
         
         if ($authDataParsed === NULL || !isset($authDataParsed['token'])){
