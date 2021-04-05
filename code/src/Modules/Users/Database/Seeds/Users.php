@@ -2,6 +2,7 @@
 
 
 use Phinx\Seed\AbstractSeed;
+use Ramsey\Uuid\Uuid;
 
 class Users extends AbstractSeed
 {
@@ -57,10 +58,8 @@ class Users extends AbstractSeed
         ];
 
         if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() === 'testing'){
-            $count = 1;
             foreach($data as &$d){
-                $d['id']=$count;
-                $count++;
+                $d['id']=Uuid::uuid4()->toString();
             }
         }
 
