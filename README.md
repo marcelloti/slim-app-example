@@ -75,7 +75,7 @@ entre os testes e o ambiente default.</p>
 <br/>
 <h2>Detalhamento do projeto</h2>
 <div style='text-align: center'>
-    <img src="https://github.com/marcelloti/slim-app-example/blob/main/organizacao-projeto.png?raw=true" width="500">
+    <img src="https://github.com/marcelloti/slim-app-example/blob/main/organizacao-projeto-up.png?raw=true" width="500">
 </div>
 
 <div style='text-align: center'>
