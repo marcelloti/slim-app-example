@@ -22,9 +22,9 @@
 <br/>
 <p>Este projeto contém subscribers que são os consumers para filas.</p>
 <p>Para consumir os endpoints primeiro é necessário subir os subscribers.</p>
-<p>Execute o seguinte comando dentro do terminal do container exampleapp para subir o subscriber de notificações:</p>
+<p>Execute os seguintes comandos dentro do terminal do container exampleapp para subir os subscribers do projeto:</p>
 <code>
-<p>php console subscriber Transactions::Notifications</p>
+<p>php console subscriber Transactions::TransactionRegister</p>
 </code>
 <br/>
 <p>Este projeto também conta com o Swagger UI que contém a documentação da API do projeto.</p>
@@ -62,3 +62,8 @@
 <p>- Como os testes são executados com o SQLite algumas verificações e etapas diferentes são executadas para o banco SQLite (como por exemplo a não manipulação de TRIGGERS). Isto pode
 diminuir a confiabilidade dos testes. Todavia a abordagem de testes com Mocks também têm suas desvantagens. Talvez alguma abordagem híbrida possa ser abordada em um ambiente intermediário
 entre os testes e o ambiente default.</p>
+<p>- Validação de Request dos controllers em um momento anterior (e não dentro do controller) pode ajudar a limpar mais o código dos mesmos. Talvez com a ajuda de algum middleware + annotations ou algo similar.</p>
+<p>- Implementar estratégia de rollback para a migration "ChangeUseridColumnType"</p>
+<p>- Criar lógica para estipular um delay para tentar repetir a transação</p>
+<p>- Lista em detalhes os parâmetros de response e request das rotas no Swagger UI</p>
+<p>- Lógica adicional para não permitir que os subscribers caiam em caso de exceptions</p>
