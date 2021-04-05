@@ -71,3 +71,18 @@ entre os testes e o ambiente default.</p>
 <p>- Implementar CRUD completo para cada entidade</p>
 <p>- Ao invés de efetuar o rollback da transação inteira se o serviço de notificação estiver offline, criar outro subscriber para lidar com o caso, retornado o Job para a fila de transações após um pequeno delay</p>
 <p>- Talvez a IDE não tenha reconhecido corretamente as regras de Lint escolhidas</p>
+
+<br/>
+<h2>Detalhamento do projeto</h2>
+<div style='text-align: center'>
+    <img src="https://github.com/marcelloti/slim-app-example/blob/main/organizacao-projeto.png?raw=true" width="500">
+</div>
+
+<div style='text-align: center'>
+    <img src="https://github.com/marcelloti/slim-app-example/blob/main/fluxo-1.png?raw=true" width="500">
+</div>
+
+<div style='text-align: center'>
+    <img src="https://github.com/marcelloti/slim-app-example/blob/main/fluxo-2.png?raw=true" width="500">
+</div>
+
