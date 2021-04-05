@@ -62,7 +62,11 @@ class TransactionsAcl {
                 return false;
             }
             
-            TransactionsAcl::enviarNotificacao();
+            $notificado = TransactionsAcl::enviarNotificacao();
+            if (!$autorizado){
+                return false;
+            }
+
             return true;
         } catch (\Exception $e){
             return false;
@@ -86,7 +90,10 @@ class TransactionsAcl {
 
         $transactionsRepo->insert($dataToInsert);
 
-        TransactionsAcl::enviarNotificacao();
+        $notificado = TransactionsAcl::enviarNotificacao();
+        if (!$notificado){
+            // TODO: Criar subscriber de notificação pós rollback
+        }
     }
 
     public static function enviarNotificacao(): bool {

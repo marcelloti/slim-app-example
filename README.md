@@ -68,3 +68,5 @@ entre os testes e o ambiente default.</p>
 <p>- Lista em detalhes os parâmetros de response e request das rotas no Swagger UI</p>
 <p>- Lógica adicional para não permitir que os subscribers caiam em caso de exceptions</p>
 <p>- Implementar CRUD completo para cada entidade</p>
+<p>- Ao invés de efetuar o rollback da transação inteira se o serviço de notificação estiver offline, criar outro subscriber para lidar com o caso, retornado o Job para a fila de transações após um pequeno delay</p>
+<p>- Talvez a IDE não tenha reconhecido corretamente as regras de Lint escolhidas</p>
