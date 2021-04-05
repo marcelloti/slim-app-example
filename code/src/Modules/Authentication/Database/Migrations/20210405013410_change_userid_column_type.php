@@ -13,7 +13,7 @@ final class ChangeUseridColumnType extends AbstractMigration
 
     public function down(): void
     {
-        $table = $this->table('auth_tokens');
-        $table->changeColumn('userid', 'integer')->update();
+        echo PHP_EOL."\e[0;30;41mERRO: Voce nao pode desfazer a migration ChangeUseridColumnType!\e[0m".PHP_EOL.''.PHP_EOL;
+        die();
     }
 }
