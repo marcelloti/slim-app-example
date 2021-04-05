@@ -12,7 +12,7 @@ class RequestTestCase extends TestCase
 {
     protected $withMiddleware = true;
 
-    public function request($requestMethod, $requestUri, $requestData = null)
+    public function request(string $requestMethod, string $requestUri, $requestData = null)
     {
         $environment = Environment::mock(
             [
