@@ -67,3 +67,4 @@ entre os testes e o ambiente default.</p>
 <p>- Criar lógica para estipular um delay para tentar repetir a transação</p>
 <p>- Lista em detalhes os parâmetros de response e request das rotas no Swagger UI</p>
 <p>- Lógica adicional para não permitir que os subscribers caiam em caso de exceptions</p>
+<p>- Implementar CRUD completo para cada entidade</p>
