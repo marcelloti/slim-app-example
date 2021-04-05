@@ -36,5 +36,8 @@ class AuthMiddleware
         if (!$validToken){
             return $response->withStatus(401);
         }
+
+        $response = $next($request, $response, $next);
+        return $response;
     }
 }
