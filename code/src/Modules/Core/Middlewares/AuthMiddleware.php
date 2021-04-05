@@ -10,9 +10,9 @@ class AuthMiddleware
         $rota = $request->getUri()->getPath();
 
         preg_match('/(\/api\/(?!login))/', $rota, $matches, PREG_OFFSET_CAPTURE);
-        $protectedRoute = count($matches) === 0 ? true : false;
+        $protectedRoute = count($matches) === 0 ? false : true;
 
-        if ($protectedRoute){
+        if (!$protectedRoute){
             $response = $next($request, $response, $next);
             return $response;
         }
@@ -36,7 +36,5 @@ class AuthMiddleware
         if (!$validToken){
             return $response->withStatus(401);
         }
-
-        return $response;
     }
 }
