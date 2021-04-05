@@ -11,9 +11,5 @@ class CoreRoute extends Route {
     $this->app->get('/', function(Request $request, Response $response, array $args): Response {
       return $response->withJson('API ONLINE');
     });
-
-    $this->app->options('/{routes:.+}', function(Request $request, Response $response, array $args): Response {
-      return $response;
-    });
   }
 }
