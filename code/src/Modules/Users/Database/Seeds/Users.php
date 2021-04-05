@@ -14,7 +14,7 @@ class Users extends AbstractSeed
      * More information on writing seeders is available here:
      * https://book.cakephp.org/phinx/0/en/seeding.html
      */
-    public function run()
+    public function run(): void
     {
         $dateNow = new \DateTime();
         $data = [
@@ -41,7 +41,7 @@ class Users extends AbstractSeed
                 'cpfcnpj'    => '41278829059',
                 'email'  => "usuario1@exampleapp.com",
                 'senha'  => "123",
-                'lojista' => true,
+                'lojista' => false,
                 'created_at' => $dateNow->format('Y-m-d H:i:s'),
                 'updated_at' => $dateNow->format('Y-m-d H:i:s')
             ],
@@ -51,7 +51,7 @@ class Users extends AbstractSeed
                 'cpfcnpj'    => '17730444003',
                 'email'  => "usuario2@exampleapp.com",
                 'senha'  => "123",
-                'lojista' => true,
+                'lojista' => false,
                 'created_at' => $dateNow->format('Y-m-d H:i:s'),
                 'updated_at' => $dateNow->format('Y-m-d H:i:s')
             ]
