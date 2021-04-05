@@ -10,3 +10,4 @@ docker/rabbitmqdata
 .env
 openapi.json
 db.sqlite3
+code/db\.sqlite3-journal
