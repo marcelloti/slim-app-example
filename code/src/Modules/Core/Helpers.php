@@ -3,7 +3,7 @@
 namespace SlimExample\Modules\Core;
 
 class Helpers {
-    public static function pathModules($suffix = ''){
+    public static function pathModules(string $suffix = ''): array {
         $paths = glob(__DIR__.'/../*', GLOB_ONLYDIR);
     
         if ($suffix === ""){

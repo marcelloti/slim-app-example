@@ -4,7 +4,7 @@ namespace SlimExample\Modules\Core\Middlewares;
 
 class CorsMiddleware
 {
-    public function __invoke($request, $response, $next)
+    public function __invoke(\Slim\Http\Request $request, \Slim\Http\Response $response, \Slim\App $next): \Slim\Http\Response
     {
         $response = $next($request, $response, $next);
         $response->withHeader('Access-Control-Allow-Origin', '*')

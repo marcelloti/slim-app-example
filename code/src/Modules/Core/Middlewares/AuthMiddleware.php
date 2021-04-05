@@ -5,7 +5,7 @@ use SlimExample\Modules\Authentication\Services\LoginService;
 
 class AuthMiddleware
 {
-    public function __invoke($request, $response, $next)
+    public function __invoke(\Slim\Http\Request $request, \Slim\Http\Response $response, \Closure $next): \Slim\Http\Response
     {
         $rota = $request->getUri()->getPath();
 
@@ -38,6 +38,7 @@ class AuthMiddleware
         }
 
         $response = $next($request, $response, $next);
+
         return $response;
     }
 }

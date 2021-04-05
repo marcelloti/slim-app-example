@@ -9,7 +9,7 @@ use SlimExample\Acl\Infra\TokenGenerator\TokenGeneratorLib;
 
 class TokenGeneratorLibTest extends TestCase
 {
-    public function testGenerateToken()
+    public function testGenerateToken(): void
     {
         $userId = 1;
         $secret = "SeC_".substr(uniqid(), 0, 6)."_#";

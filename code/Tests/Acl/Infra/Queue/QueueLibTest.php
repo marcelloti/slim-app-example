@@ -7,13 +7,13 @@ use SlimExample\Acl\Infra\Queue\QueueLib;
 
 class QueueLibTest extends TestCase
 {
-    public function testGetQueueManagerFromClass()
+    public function testGetQueueManagerFromClass(): void
     {
         $qM = QueueLib::getQueueManager('RabbitMQ');
         $this->assertEquals("SlimExample\\Acl\Infra\\Queue\\Implementations\\RabbitMQ", get_class($qM));
     }
 
-    public function testSendDataToQueue()
+    public function testSendDataToQueue(): void
     {
         $dados=new \stdClass();
         $dados->userName = 'John Doe';

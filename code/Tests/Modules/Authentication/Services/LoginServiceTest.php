@@ -7,7 +7,7 @@ use SlimExample\Modules\Authentication\Services\LoginService;
 
 class LoginServiceTest extends TestCase
 {
-    public function testGetNewAuthToken()
+    public function testGetNewAuthToken(): void
     {
         $email = "usuario1@exampleapp.com";
         $senha = "123";
@@ -19,7 +19,7 @@ class LoginServiceTest extends TestCase
         );
     }
 
-    public function testValidateAuthToken(){
+    public function testValidateAuthToken(): void {
         $email = "usuario1@exampleapp.com";
         $senha = "123";
         $token = LoginService::getNewAuthToken($email, $senha);
@@ -29,7 +29,7 @@ class LoginServiceTest extends TestCase
         $this->assertEquals(true, $tokenIsValid);
     }
 
-    public function testValidateAuthTokenWithInvalidToken(){
+    public function testValidateAuthTokenWithInvalidToken(): void {
         $email = "usuario1@exampleapp.com";
         $senha = "123";
         $token = LoginService::getNewAuthToken($email, $senha);
@@ -39,7 +39,7 @@ class LoginServiceTest extends TestCase
         $this->assertEquals(false, $tokenIsValid);
     }
 
-    public function testGetAuthTokenDataInDatabaseByToken(){
+    public function testGetAuthTokenDataInDatabaseByToken(): void {
         $email = "usuario1@exampleapp.com";
         $senha = "123";
         $token = LoginService::getNewAuthToken($email, $senha);

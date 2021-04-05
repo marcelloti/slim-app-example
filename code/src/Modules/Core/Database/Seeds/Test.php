@@ -4,7 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Test extends AbstractSeed
 {
-    public function run()
+    public function run(): void 
     {
         if (\SlimExample\Acl\Infra\Cmd\Util::getCurrentEnv() !== 'testing'){
             return;

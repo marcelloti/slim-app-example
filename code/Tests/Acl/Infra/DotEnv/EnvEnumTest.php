@@ -7,14 +7,14 @@ use SlimExample\Acl\Infra\DotEnv\DotEnvLib;
 
 class EnvEnumTest extends TestCase
 {
-    public function testCheckDefaultEnvInList()
+    public function testCheckDefaultEnvInList(): void
     {
         $retornoDefault = EnvEnum::envInList(EnvEnum::DEFAULT);
 
         $this->assertEquals(true, $retornoDefault);
     }
 
-    public function testCheckNonExistentEnvInList()
+    public function testCheckNonExistentEnvInList(): void
     {
         $retornoDefault = EnvEnum::envInList('NotExist');
 

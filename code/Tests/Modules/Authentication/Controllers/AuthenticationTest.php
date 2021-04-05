@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class AuthenticationTest extends RequestTestCase
 {
-    public function testLoginUser()
+    public function testLoginUser(): void
     {
         $client = new \GuzzleHttp\Client();
 

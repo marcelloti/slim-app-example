@@ -9,7 +9,7 @@ use SlimExample\Modules\Core\Repositories\TestsRepository;
 
 class RepositoryTest extends TestCase
 {
-    public function testFindAll()
+    public function testFindAll(): void
     {
         $testRepo = new TestsRepository();
         $results = $testRepo->findAll();
@@ -21,7 +21,7 @@ class RepositoryTest extends TestCase
         $this->assertEquals('456', $results[1]['test']);
     }
 
-    public function testFindBy()
+    public function testFindBy(): void
     {
         $testRepo = new TestsRepository();
         $findData = [
@@ -34,7 +34,7 @@ class RepositoryTest extends TestCase
         $this->assertEquals('123', $results[0]['test']);
     }
 
-    public function testInsert()
+    public function testInsert(): void
     {
         $testRepo = new TestsRepository();
         $dateNow = new \DateTime();
@@ -58,7 +58,7 @@ class RepositoryTest extends TestCase
         $this->assertEquals('789', $results[0]['test']);
     }
 
-    public function testUpdate(){
+    public function testUpdate(): void {
         $testRepo = new TestsRepository();
 
         $filter = [
@@ -80,7 +80,7 @@ class RepositoryTest extends TestCase
         $this->assertEquals('7890', $results[0]['test']);
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $testRepo = new TestsRepository();
 

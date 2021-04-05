@@ -3,7 +3,7 @@
 namespace SlimExample\Acl\Infra\Cmd;
 
 class Util {
-    public static function getCurrentEnv(){
+    public static function getCurrentEnv(): string {
         $env = 'default';
 
         if (isset($_ENV)){

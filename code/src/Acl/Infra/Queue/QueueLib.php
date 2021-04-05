@@ -4,7 +4,7 @@ namespace SlimExample\Acl\Infra\Queue;
 use SlimExample\Acl\Infra\DotEnv\DotEnvLib;
 
 class QueueLib {
-    public static function getQueueManager($managerName = null){
+    public static function getQueueManager(string $managerName = null){
         $queueManager = null;
         if ($managerName === null) {
             $managerClass = "SlimExample\\Acl\\Infra\\Queue\\Implementations\\".DotEnvLib::get('QUEUE_ENGINE');

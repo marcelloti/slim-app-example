@@ -33,14 +33,14 @@ class AuthMiddlewareTest extends RequestTestCase
         return $httpcode;
     }
 
-    public function testUnauthorizedRoute()
+    public function testUnauthorizedRoute(): void
     {
         $httpcode = $this->makeRequestAndReturnHttpCode('api/users');
 
         $this->assertEquals(401, $httpcode);
     }
 
-    public function testAuthorizedRoute()
+    public function testAuthorizedRoute(): void
     {
         $loginData = [
             "email" => "lojista1@exampleapp.com",

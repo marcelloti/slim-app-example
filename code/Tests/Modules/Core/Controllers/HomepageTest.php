@@ -6,7 +6,7 @@ use Tests\RequestTestCase;
 
 class HomepageTest extends RequestTestCase
 {
-    public function testGetApiOnlineResponse()
+    public function testGetApiOnlineResponse(): void
     {
         $response = $this->request('GET', '/');
 

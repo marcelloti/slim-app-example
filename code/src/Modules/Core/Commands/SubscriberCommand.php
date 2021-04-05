@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class SubscriberCommand extends Command {
-  protected function configure(){
+  protected function configure(): void {
     $this
     ->setName('subscriber')
     ->setDescription('Run a PHP subscriber')

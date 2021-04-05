@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UpdateApiDocCommand extends Command {
-  protected function configure(){
+  protected function configure(): void {
     $this
     ->setName('updateapidoc')
     ->setDescription('Update the API documentation file');

@@ -7,7 +7,7 @@ use SlimExample\Acl\Infra\Cmd\Util;
 
 class UtilTest extends TestCase
 {
-    public function testGetCurrentEnv()
+    public function testGetCurrentEnv(): void
     {
         $currentEnv = Util::getCurrentEnv();
         $this->assertEquals('testing', $currentEnv);
