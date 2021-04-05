@@ -6,7 +6,7 @@ use Tests\RequestTestCase;
 use SlimExample\Acl\Infra\DotEnv\DotEnvLib;
 use Illuminate\Support\Facades\Http;
 
-class UsersTest extends RequestTestCase
+class AuthenticationTest extends RequestTestCase
 {
     public function testLoginUser()
     {
