@@ -9,6 +9,15 @@ class RabbitMQ implements IQueue {
     private $connection;
     private $channel;
 
+    protected $passive = false;
+    protected $durable = false;
+    protected $exclusive = false;
+    protected $auto_delete = false;
+    protected $nowait = false;
+    protected $arguments = array();
+    protected $ticket = null;
+    protected $exchangeName = '';
+
     private function initConnection(): void {
         $queueHost = DotEnvLib::get('QUEUE_HOST');
         $queuePort = DotEnvLib::get('QUEUE_PORT');
@@ -36,24 +45,17 @@ class RabbitMQ implements IQueue {
         try{
             $connection = $this->initConnection();
             
-            $passive = false;
-            $durable = false;
-            $exclusive = false;
-            $auto_delete = false;
-            $nowait = false;
-            $arguments = array();
-            $ticket = null;
-            $exchangeName = '';
+
 
             $this->channel->queue_declare(
                 $queueName,
-                $passive,
-                $durable,
-                $exclusive,
-                $auto_delete,
-                $nowait,
-                $arguments,
-                $ticket
+                $this->passive,
+                $this->passive,
+                $this->exclusive,
+                $this->auto_delete,
+                $this->nowait,
+                $this->arguments,
+                $this->ticket
             );
 
             $msg = new AMQPMessage(
@@ -61,7 +63,7 @@ class RabbitMQ implements IQueue {
                 array('delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT)
             );
 
-            $retorno = $this->channel->basic_publish($msg, $exchangeName, $queueName);
+            $retorno = $this->channel->basic_publish($msg, $this->exchangeName, $queueName);
 
             $this->channel->basic_qos(
                 null, #prefetch size - prefetch window size in octets, null meaning "no specific limit"
@@ -93,6 +95,17 @@ class RabbitMQ implements IQueue {
             $connection = $this->initConnection();
             $consumerTag = "";
 
+            $this->channel->queue_declare(
+                $queueName,
+                $this->passive,
+                $this->passive,
+                $this->exclusive,
+                $this->auto_delete,
+                $this->nowait,
+                $this->arguments,
+                $this->ticket
+            );
+
             $this->channel->basic_consume(
                 $queueName,
                 $consumerTag,
@@ -109,7 +122,7 @@ class RabbitMQ implements IQueue {
                 $this->channel->wait();
             }
         } catch (\Exception $err) {
-            $errors[] = $error;
+            $errors[] = $err;
         } finally {
             try {
                 $this->disconnect();
@@ -119,7 +132,7 @@ class RabbitMQ implements IQueue {
             }
 
             if (count($errors) > 0) {
-                throw new \Exception($errors);
+                throw new \Exception(json_encode($errors));
             }
         }
     }
