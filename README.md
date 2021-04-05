@@ -16,6 +16,7 @@
 <p>Em seguida acesse o terminal do container "exampleapp" e execute os seguintes comandos:
 <code>
 <p>composer install</p>
+<p>cp .env-example .env</p>
 <p>php console migration:run -e default</p>
 <p>php console migration:seed:run -e default</p>
 </code>
